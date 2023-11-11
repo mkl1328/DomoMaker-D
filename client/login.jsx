@@ -98,7 +98,7 @@ const init = () => {
     return false;
   });
 
-  ReactDOM.render(<loginWindow />,
+  ReactDOM.render(<LoginWindow />,
     document.getElementById('content'));
 };
 
