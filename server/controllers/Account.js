@@ -19,7 +19,7 @@ const login = (req, res) => {
 
   return Account.authenticate(username, pass, (err, account) => {
     if (err || !account) {
-      return res.status(401).json({ errorr: 'Wrong username or password!' });
+      return res.status(401).json({ erorr: 'Wrong username or password!' });
     }
 
     req.session.account = Account.toAPI(account);
@@ -56,9 +56,39 @@ const signup = async (req, res) => {
   }
 };
 
+const changePassPage = (req, res) => res.render('changePass')
+
+const changePass = async (req, res) => {
+  const oldPass = `${req.body.oldPass}`;
+  const pass = `${req.body.pass}`;
+  const pass2 = `${req.body.pass2}`;
+
+  if (!pass || !pass2) {
+    return res.status(400).json({ error: 'All fields are required!' });
+  }
+
+  if (pass !== pass2) {
+    return res.status(400).json({ error: 'Passwords do not match!' });
+  }
+
+  try {
+    // const hash = await Account.generateHash(pass);
+  
+    // Authenticate
+    //Then change pass.
+
+    return res.status(201).json({ redirect: '/maker', message: 'password updated successfully' });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: 'An error occurred!' });
+  }
+}
+
 module.exports = {
   loginPage,
   login,
   logout,
   signup,
+  changePassPage,
+  changePass,
 };
