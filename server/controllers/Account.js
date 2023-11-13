@@ -56,10 +56,10 @@ const signup = async (req, res) => {
   }
 };
 
-const changePassPage = (req, res) => res.render('changePass')
+const changePassPage = (req, res) => res.render('changePass');
 
 const changePass = async (req, res) => {
-  const oldPass = `${req.body.oldPass}`;
+  // const oldPass = `${req.body.oldPass}`;
   const pass = `${req.body.pass}`;
   const pass2 = `${req.body.pass2}`;
 
@@ -73,16 +73,16 @@ const changePass = async (req, res) => {
 
   try {
     // const hash = await Account.generateHash(pass);
-  
+
     // Authenticate
-    //Then change pass.
+    // Then change pass.
 
     return res.status(201).json({ redirect: '/maker', message: 'password updated successfully' });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: 'An error occurred!' });
   }
-}
+};
 
 module.exports = {
   loginPage,
